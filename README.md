@@ -23,3 +23,26 @@ Executar Container:
 ```
 docker container run -d -p 8080:8080 user/conversao-temperatura:v1
 ```
+### Orquestrador de Container - Kubernetes
+
+Criar orquestrador com K3D:
+```
+k3d cluster create -p 81:30000 cluster-temp
+```
+Rodar deployment k8s:
+```
+kubectl apply -f deployment.yaml
+```
+Acessar aplicação por:
+```
+localhost:81
+```
+
+### Comandos importantes
+```
+k3d cluster delete nome-cluster
+kubectl get all
+kubectl get po
+kubectl get svc
+kubectl describe
+```

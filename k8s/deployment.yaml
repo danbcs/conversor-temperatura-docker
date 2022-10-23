@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-temp
+spec:
+  selector:
+    matchLabels:
+      app: web-temp
+  template:
+    metadata:
+      labels:
+        app: web-temp
+    spec:
+      containers:
+        - name: web-temp
+          image: danbcs/conversao-temperatura:v1
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-temp
+spec:
+  selector:
+    app: web-temp
+  ports:
+    - port: 81
+      targetPort: 8080
+      nodePort: 30000
+  type: NodePort
